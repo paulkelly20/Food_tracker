@@ -12,12 +12,12 @@ import java.util.Set;
 @Table(name="meals")
 public class Meal {
     private int id;
-    private Set<Food> foods;
+    private List<Food> foods;
     private MealType mealType;
     private Day day;
 
     public Meal(MealType mealType, Day day) {
-        this.foods = new HashSet<Food>();
+        this.foods =  new ArrayList<Food>();
         this.mealType = mealType;
         this.day = day;
     }
@@ -38,14 +38,13 @@ public class Meal {
     }
 
     @OneToMany(mappedBy = "meal", fetch = FetchType.EAGER)
-    public Set<Food> getFoods() {
+    public List<Food> getFoods() {
         return foods;
     }
 
-    public void setFoods(Set<Food> foods) {
+    public void setFoods(List<Food> foods) {
         this.foods = foods;
     }
-
 
     public int calCountForDay() {
         int calCount = 0;

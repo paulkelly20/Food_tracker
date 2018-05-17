@@ -84,7 +84,7 @@ public abstract class Food {
     }
 
     @ManyToOne
-    @JoinColumn(name = "meal_id")
+    @JoinColumn(name = "meal_id", nullable = false)
     public Meal getMeal() {
         return meal;
     }

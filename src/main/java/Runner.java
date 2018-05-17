@@ -27,6 +27,7 @@ public class Runner {
         DBHelper.save(day);
 
         Food food = new Grain("Cheese", 90, 20, 10, 10);
+
         DBHelper.save(food);
 
         Food food2 = new Grain("Cheese", 90, 20, 10, 10);
@@ -34,9 +35,10 @@ public class Runner {
 
 
         Meal meal = new Meal(MealType.BREAKFAST, day);
+        food.setMeal(meal);
         DBHelper.addMeal(meal, food);
         DBHelper.addMeal(meal, food2);
-
+        DBHelper.save(food);
 
         day.addMeal(meal);
         DBHelper.save(day);
