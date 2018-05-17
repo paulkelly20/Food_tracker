@@ -7,11 +7,14 @@
     <session-factory>
         <property name="hbm2ddl.auto">create</property>
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost/newdbhomeworkw8</property>
+        <property name="connection.url">jdbc:postgresql://localhost/foodtracker</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
         <property name="connection.pool_size">1</property>
         <property name="show_sql">true</property>
-        <mapping class="models.Student" />
-        <mapping class="models.Course" />
+        <mapping class="models.person.Person" />
+        <mapping class="models.food.Meal" />
+        <mapping class="models.calander.Day" />
+        <mapping class="models.food.Food" />
+        <mapping class="models.food.Grain" />
     </session-factory>
 </hibernate-configuration>
