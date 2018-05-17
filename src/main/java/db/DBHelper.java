@@ -95,15 +95,14 @@ public class DBHelper {
         return result;
     }
 
-    public static List<Meal> totalCals(Day day) {
+    public static <T> T find(Class classType, int id){
         session = HibernateUtil.getSessionFactory().openSession();
-        List<Meal> result = null;
-
+        T result = null;
         try {
-            Criteria cr = session.createCriteria(Meal.class);
-            cr.add(Restrictions.eq("day", day));
-            result = cr.list();
-        } catch (HibernateException e) {
+            Criteria cr = session.createCriteria(classType);
+            cr.add(Restrictions.eq("id", id));
+            result = (T)cr.uniqueResult();
+        } catch (HibernateException e){
             e.printStackTrace();
         } finally {
             session.close();
@@ -111,10 +110,5 @@ public class DBHelper {
         return result;
     }
 
-
-    public static void addMeal(Meal meal, Food food) {
-        meal.addFood(food);
-        save(meal);
-    }
 
 }

@@ -1,4 +1,5 @@
 import db.DBHelper;
+import db.DBMeal;
 import models.calander.Day;
 import models.food.Food;
 import models.food.Grain;
@@ -35,20 +36,30 @@ public class Runner {
 
 
         Meal meal = new Meal(MealType.BREAKFAST, day);
+        DBHelper.save(meal);
         food.setMeal(meal);
-        DBHelper.addMeal(meal, food);
-        DBHelper.addMeal(meal, food2);
+        food2.setMeal(meal);
+
+        DBMeal.addMeal(meal, food);
+        DBMeal.addMeal(meal, food2);
+
         DBHelper.save(food);
+        DBHelper.save(food2);
 
         day.addMeal(meal);
         DBHelper.save(day);
 
 
 
+
         List<Day> allDays = DBHelper.getAll(Day.class);
 
-        List<Meal> meals = DBHelper.getAll(Meal.class);
-        List<Meal> totalCalsDay = DBHelper.totalCals(day);
+
+        Meal foundMeal = DBHelper.find(Meal.class, meal.getId());
+        List<Meal> allMeals = DBHelper.getAll(Meal.class);
+        List<Meal> totalDailyMeals = DBMeal.totalMealsInADay(day);
+
+        int totalDaysCalories = DBMeal.getTotalCalsForDay(day);
 
     }
 }

@@ -28,7 +28,7 @@ public abstract class Food {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name ="id")
     public int getId() {
         return id;
     }
