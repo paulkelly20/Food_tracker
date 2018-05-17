@@ -1,3 +1,4 @@
+import db.DBDay;
 import db.DBHelper;
 import db.DBMeal;
 import models.calander.Day;
@@ -15,7 +16,7 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        Calendar today =  Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
         today.set(Calendar.YEAR, 2018);
         today.set(Calendar.MONTH, 5);
         today.set(Calendar.DAY_OF_MONTH, 16);
@@ -34,22 +35,31 @@ public class Runner {
         Food food2 = new Grain("Cheese", 90, 20, 10, 10);
         DBHelper.save(food2);
 
+        Food food3 = new Grain("Rice", 90, 20, 10, 10);
+        DBHelper.save(food3);
 
+
+        Meal meal2 = new Meal(MealType.DINNER, day);
+        DBHelper.save(meal2);
         Meal meal = new Meal(MealType.BREAKFAST, day);
         DBHelper.save(meal);
         food.setMeal(meal);
         food2.setMeal(meal);
+        food3.setMeal(meal2);
+
 
         DBMeal.addMeal(meal, food);
         DBMeal.addMeal(meal, food2);
+        DBMeal.addMeal(meal2, food3);
 
         DBHelper.save(food);
         DBHelper.save(food2);
+        DBHelper.save(food3);
 
         day.addMeal(meal);
+        day.addMeal(meal2);
+
         DBHelper.save(day);
-
-
 
 
         List<Day> allDays = DBHelper.getAll(Day.class);
@@ -61,5 +71,12 @@ public class Runner {
 
         int totalDaysCalories = DBMeal.getTotalCalsForDay(day);
 
+        Person foundPerson = DBHelper.find(Person.class, person.getId());
+
+        List<Day> personsDays = DBDay.AllDaysBelongingToAPerson(person);
+
+        List<Meal> foundMeals = DBDay.AllMealsForADay(person);
+
+        List<Food> personTotalDailyFoods = DBDay.foodsForADayFromAPerson(person);
     }
 }
