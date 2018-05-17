@@ -37,7 +37,7 @@ public class Meal {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "meal", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "meal")
     public List<Food> getFoods() {
         return foods;
     }
