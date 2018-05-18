@@ -16,5 +16,6 @@
         <mapping class="models.calander.Day" />
         <mapping class="models.food.Food" />
         <mapping class="models.food.Grain" />
+        <mapping class="models.food.Fruit" />
     </session-factory>
 </hibernate-configuration>

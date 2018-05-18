@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="grains")
 public class Grain extends Food {
-    private Meal meal;
+
 
     public Grain() {
     }
@@ -19,13 +19,5 @@ public class Grain extends Food {
     }
 
 
-    @ManyToOne
-    @JoinColumn(name = "meal_id", nullable = false)
-    public Meal getMeal() {
-        return meal;
-    }
 
-    public void setMeal(Meal meal) {
-        this.meal = meal;
-    }
 }
